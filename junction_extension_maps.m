@@ -28,8 +28,8 @@ stdFactor = 0.5;
 %SCRIPT---------------------------------------------------------------------------------------
 
 %mask to ignore non-cortial regions: thalamus, cerebrellum, brainstem and basal ganglia
-ncort_labels = [35 36 37 38 39 40 41 55 56 57 58 59 60 61 62 71 72 73 75 76];
-fcdMask = get_mask(templateDir, ncort_labels);
+non_cort_labels = [35 36 37 38 39 40 41 55 56 57 58 59 60 61 62 71 72 73 75 76];
+fcdMask = get_mask(templateDir, non_cort_labels);
 
 %First we need to generate the control's maps
 [pathsCtrl, pathsCtrlGM, pathsCtrlWM, nCtrls] = load_paths(pathCtrl,'auto');

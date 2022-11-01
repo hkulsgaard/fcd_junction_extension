@@ -3,6 +3,7 @@
 %voxels of the image
 %Usage: [,] = load_nifti()
 function [img, h] = load_nifti(path)
+    if isstring(path),path = char(path);end
     h = spm_vol(path);
     img = spm_read_vols(h);
 end
