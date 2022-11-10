@@ -2,8 +2,11 @@ function [j_mean, e_mean, e_std] = generate_references(controls_paths, mask, ker
     
     fprintf('[INFO]Generating reference images...\n');
     
+    [~,h] = load_nifti(get_path("cat12_shooting"));
+    img_size = h.dim;
     n_controls = size(controls_paths,1);
-    smooths = zeros(n_controls, size(mask,1), size(mask,2),size(mask,3));
+    smooths = zeros([n_controls img_size]);
+
     for c = 1:n_controls 
         [img_brain, img_gm, img_wm, h] = load_brain_images(controls_paths(c), mask);
 
@@ -21,9 +24,9 @@ function [j_mean, e_mean, e_std] = generate_references(controls_paths, mask, ker
     j_mean = j_mean/n_controls;
     %eMap_controls = eMap_controls/nControls;
     e_mean = mean(smooths);
-    e_mean = reshape(e_mean,[size(mask,1) size(mask,2) size(mask,3)]);
+    e_mean = reshape(e_mean, img_size);
     e_std = std(smooths);
-    e_std = reshape(e_std,[size(mask,1) size(mask,2) size(mask,3)]);
+    e_std = reshape(e_std, img_size);
     clear smooths;
     
     % save reference images as nifti

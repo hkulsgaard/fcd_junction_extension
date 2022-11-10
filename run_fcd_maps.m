@@ -14,20 +14,21 @@ template_dir = get_path('template');
 %------------------------
 %MAIN SCRIPT
 %------------------------
+%addpath('utils');
 
 % controls selection at file level
-%[controls_paths, ~] = select_files(path, "*.nii", "manual", "Select the nifti images of the controls", 1);
-%[controls_dir, ~, ~] = fileparts(controls_paths(1));
+[controls_paths, ~] = select_files(source_path, "*.nii", "manual", "Select the nifti images of the controls", 1);
+[controls_dir, ~, ~] = fileparts(controls_paths(1));
 
 % controls selection at directory level (for debugging)
-controls_dir = select_dir(source_path, "Select the directory were the controls are located", 1);
-[controls_paths,~] = select_files(controls_dir, "*.nii", "auto", "", 1);
+%controls_dir = select_dir(source_path, "Select the directory were the controls are located", 1);
+%[controls_paths,~] = select_files(controls_dir, "*.nii", "auto", "", 1);
 
 % patient selection at file level
 patients_paths = select_files(source_path, "*.nii", "manual", "Select the nifti images of the patients", 1);
 
 % Check if niftis were preprocessed, if not, runs preprocessing step
-% ETA: 10~15min per nifti
+% ETA: 15~20min per nifti
 all_paths = [controls_paths; patients_paths];
 prepro_check = check_prepro(all_paths);
 if sum(prepro_check) ~= 0
@@ -36,7 +37,8 @@ if sum(prepro_check) ~= 0
 end
 
 %mask to ignore non-cortial regions: thalamus, cerebrellum, brainstem and basal ganglia
-ncort_labels = [35 36 37 38 39 40 41 55 56 57 58 59 60 61 62 71 72 73 75 76];
+%ncort_labels = [35 36 37 38 39 40 41 55 56 57 58 59 60 61 62 71 72 73 75 76];
+ncort_labels = [];
 excluded_regions = get_mask(template_dir, ncort_labels);
 
 % Check if the references images were created and loads it, if not, runs the required step

@@ -7,21 +7,33 @@
 
 function cat_preprocess(paths)
     fprintf('[INFO]Pre-processing images...\n');
-
-    % load pre-configured module for preprocessing and add niftis
+    
+    %addpath(get_path("cat12_dir"));
+    
+    % load pre-configured module for preprocessing
     prepro_batch = load(get_path('prepro_module'));
     prepro_batch.matlabbatch{1,1}.spm.tools.cat.estwrite.data = cellstr(paths);
-    prepro_batch.matlabbatch{1}.spm.tools.cat.estwrite.opts.tpm = {fullfile(pwd,get_path('cat12_template'))};
-
-    % run the batch
+    prepro_batch.matlabbatch{1,1}.spm.tools.cat.estwrite.opts.tpm = ...
+        cellstr(get_path('cat12_template'));
+    
+    prepro_batch.matlabbatch{1,1}.spm.tools.cat.estwrite.extopts.registration.regmethod.shooting.shootingtpm = ...
+        cellstr(get_path('cat12_shooting'));
+    
+    % run the batch using the CAT12 function 
+    % using spm_jobman gives errors of initialization
     %run_batch(prepro_batch)
+    warning ('off','all');
+    cat_run(prepro_batch.matlabbatch{1,1}.spm.tools.cat.estwrite);
+    warning ('on','all');
     
     %compress the files for inversing results (iy) and the labeled normalized
     %images (p0)
     for p = 1:size(paths,1)
+        fprintf('[INFO]Compressing images...\n');
         [folder, file, ext] = fileparts(paths(p));
         output_dir = fullfile(folder, get_path('segments'));
         compress_file(fullfile(output_dir, strcat("iy_",file,ext)),1);
+        compress_file(fullfile(output_dir, strcat("y_",file,ext)),1);
         compress_file(fullfile(output_dir, strcat("p0",file,ext)),1);
     end
 end

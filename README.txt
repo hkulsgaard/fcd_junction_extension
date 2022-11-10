@@ -5,12 +5,12 @@
 	>Descomprimir y mover la carpeta "cat12" en <carpeta_instalación_SPM>/toolbox
 
 (2) Uso del programa:
-	>Abrir Matlab
+	>Abrir Matlab con permisos de administrador (run as administrator)
 	>Abrir el script "run_fcd_maps.m"
-	>Solo si es necesario, modificar los "CONFIGURATION PARAMETERS"
-	>Correr el script
-	>Primero se solicita seleccionar el conjunto de imagenes nifti de los control es (utilizado para la generación de las imágenes de referencia)
-	>Segundo se solicita seleccionar las imágenes de los pacientes a los cuales se quiere generar los mapas
+	>Solo si es necesario, modificar los "CONFIGURATION PARAMETERS" (recomendado dejar en default)
+	>Correr el script "run_fcd_maps.m"
+	>Primero se solicita seleccionar cada una de las imagenes nifti de los controles originales (en espacio nativo)
+	>Segundo se solicita seleccionar cada uno de las las imágenes de los pacientes originales (en espacio nativo) a los cuales se les quiere generar los mapas
 	>Los mapas serán guardos en la carpeta "maps" junto a las imágenes del paciente
 	
 (3) Notas:
@@ -23,5 +23,5 @@
 		(wm*) Cerebro completo normalizado
 		(wp1*) Materia gris normalizada
 		(wp2*) Materia blanca normalizada
-		(p0*) Cerebro completo segmentado en espacio nativo (No se utiliza)
-		(yi_*) Matriz de deformación para convertir del espacio del template al nativo (No se utiliza)
+		(p0*) Cerebro completo segmentado en espacio nativo
+		(yi_*) Matriz de deformación para convertir del espacio del template al nativo
