@@ -30,3 +30,6 @@ Implementation of Junction and Extension maps for automatic detection of Focal C
    * (p0*)  All brain segmented with labels in native space (not required for map generation)
    * (yi_*) Transformation matrix from template to native space (not required for map generation)
    * (y_*) Transformation matrix from native to template space (not required for map generation)
+   
+## Result:
+![Example result](https://github.com/hkulsgaard/fcd_maps/blob/master/images/results_thresholded.jpg)
