@@ -2,13 +2,13 @@
 Implementation of Junction and Extension maps for automatic detection of Focal Cortical Dysplasia using brain MRI
 
 ## Requirements:
-	- Matlab R2018b installed
-	- SPM12 for Matlab installed 
-		- Download from https://www.fil.ion.ucl.ac.uk/spm/software/download/
-		- Add SPM's path to Matlab path
-	- CAT12.8.1 (r2043) plugin for SPM
-		- Download from http://www.neuro.uni-jena.de/cat12/
-		- Move cat12 folder to <spm_dir>/toolbox and add this path to Matlab path
+ - Matlab R2018b installed
+ - SPM12 for Matlab installed 
+   * Download from https://www.fil.ion.ucl.ac.uk/spm/software/download/
+   * Add SPM's path to Matlab path
+ - CAT12.8.1 (r2043) plugin for SPM
+   * Download from http://www.neuro.uni-jena.de/cat12/
+   * Move cat12 folder to <spm_dir>/toolbox and add this path to Matlab path
 
 ## Usage:
 	1. Run the main script "run_fcd_maps.m"
@@ -21,12 +21,12 @@ Implementation of Junction and Extension maps for automatic detection of Focal C
 
 	
 ## Notes:
-	- Pre-processed images need to be in the directory "mri" inside the original image dir
-	- If you want to re-generate the reference images, you need to delete the reference dir inside control's dir
-	- The images created by the pre-processing step will be:
-		- (wm*)  All brain normalized
-		- (wp1*) Grey matter normalized
-		- (wp2*) White matter normalized
-		- (p0*)  All brain segmented with labels in native space (not required for map generation)
-		- (yi_*) Transformation matrix from template to native space (not required for map generation)
-		- (y_*) Transformation matrix from native to template space (not required for map generation)
+ - Pre-processed images need to be in the directory "mri" inside the original image dir
+ - If you want to re-generate the reference images, you need to delete the reference dir inside control's dir
+ - The images created by the pre-processing step will be:
+   * (wm*)  All brain normalized
+   * (wp1*) Grey matter normalized
+   * (wp2*) White matter normalized
+   * (p0*)  All brain segmented with labels in native space (not required for map generation)
+   * (yi_*) Transformation matrix from template to native space (not required for map generation)
+   * (y_*) Transformation matrix from native to template space (not required for map generation)
