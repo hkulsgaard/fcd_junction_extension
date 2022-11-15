@@ -3,6 +3,7 @@ clear;clc;tic;
 %------------------------
 %CONFIGURATION PARAMETERS
 %------------------------
+debug_flag = 0;
 kernel_conv = 5; %default: 5
 kernel_smoothing = 6; %default: 6
 std_factor = 0.5; %default: 0.5
@@ -14,7 +15,13 @@ template_dir = get_path('template');
 %------------------------
 %MAIN SCRIPT
 %------------------------
-%addpath('utils');
+
+print_inic()
+
+if debug_flag
+    addpath('utils');
+    source_path = "D:\Pladema\Datos\sauce\HEC\JP";
+end
 
 % controls selection at file level
 [controls_paths, ~] = select_files(source_path, "*.nii", "manual", "Select the nifti images of the controls", 1);
@@ -24,7 +31,7 @@ template_dir = get_path('template');
 %controls_dir = select_dir(source_path, "Select the directory were the controls are located", 1);
 %[controls_paths,~] = select_files(controls_dir, "*.nii", "auto", "", 1);
 
-% patient selection at file level
+% patient selection at file levelspm_version
 patients_paths = select_files(source_path, "*.nii", "manual", "Select the nifti images of the patients", 1);
 
 % Check if niftis were preprocessed, if not, runs preprocessing step
@@ -38,8 +45,8 @@ end
 
 %mask to ignore non-cortial regions: thalamus, cerebrellum, brainstem and basal ganglia
 %ncort_labels = [35 36 37 38 39 40 41 55 56 57 58 59 60 61 62 71 72 73 75 76];
-ncort_labels = [];
-excluded_regions = get_mask(template_dir, ncort_labels);
+%excluded_regions = get_mask(template_dir, ncort_labels);
+excluded_regions = [];
 
 % Check if the references images were created and loads it, if not, runs the required step
 ref_check = check_references(controls_dir);
@@ -53,3 +60,8 @@ end
 generate_maps(patients_paths, j_mean, e_mean, e_std, excluded_regions, kernel_conv, kernel_smoothing, std_factor);
 
 fprintf('[INFO]Elapsed time %.2f minutes\n[INFO]Job done!\n', double(toc/60));
+
+function output = print_inic()
+    c = fix(clock);
+    fprintf('[INFO]FCD Maps script starting [%i:%i - %i/%i/%i]\n', c(4),c(5), c(3),c(2),c(1));
+end

@@ -30,8 +30,10 @@ function cat_preprocess(paths)
     %images (p0)
     for p = 1:size(paths,1)
         fprintf('[INFO]Compressing images...\n');
+        
         [folder, file, ext] = fileparts(paths(p));
         output_dir = fullfile(folder, get_path('segments'));
+        
         compress_file(fullfile(output_dir, strcat("iy_",file,ext)),1);
         compress_file(fullfile(output_dir, strcat("y_",file,ext)),1);
         compress_file(fullfile(output_dir, strcat("p0",file,ext)),1);

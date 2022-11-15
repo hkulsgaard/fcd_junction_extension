@@ -1,0 +1,14 @@
+In order to compile this version of FCD_MAPS you need to have Matlab Platform R2018b installed and follow this steps:
+(1)Run "Application Compiler" inside Matlab
+(2)Select "run_fcd_maps.m" as main script
+(3)In "File required for your application to run" you have to select manually:
+	* <spm_dir>\tpm (affine registration templates directory)
+	* <spm_dir>\toolbox\OldNorm (Affine registration scripts directory)
+	* <spm_dir>\toolbox\cat12\templates_MNI152NLin2009cAsym (Shooting registration templates directory)
+	* <spm_dir>\Contents.txt (File required for deploying SPM12 application)
+	* <spm_dir>\toolbox\cat12\Contents.txt (File required for deploying CAT12 application)
+	* \utils (directory of this proyect)
+	* (optional-check NOTES) \cat12_modules (directory of this proyect)
+
+Notes:
+>In case you want to modify the parameters of the cat12 prepro module after compilation, you should have "cat12_modules" dir alongside with the "run_fcd_maps.exe". Remember to not add it as a requirement in the compilation.

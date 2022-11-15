@@ -23,7 +23,7 @@ function [j_mean, e_mean, e_std] = generate_references(controls_paths, mask, ker
     end
     j_mean = j_mean/n_controls;
     %eMap_controls = eMap_controls/nControls;
-    e_mean = mean(smooths);
+    e_mean = mean(smooths,1);
     e_mean = reshape(e_mean, img_size);
     e_std = std(smooths);
     e_std = reshape(e_std, img_size);
