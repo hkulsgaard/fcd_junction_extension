@@ -3,7 +3,6 @@ clear;clc;tic;
 %------------------------
 %CONFIGURATION PARAMETERS
 %------------------------
-debug_flag = 0;
 kernel_conv = 5; %default: 5
 kernel_smoothing = 6; %default: 6
 std_factor = 0.5; %default: 0.5
@@ -18,9 +17,8 @@ template_dir = get_path('template');
 
 print_inic()
 
-if debug_flag
+if ~isdeployed
     addpath('utils');
-    source_path = "D:\Pladema\Datos\sauce\HEC\JP";
 end
 
 % controls selection at file level

@@ -36,6 +36,10 @@ function cat_preprocess(paths)
         
         compress_file(fullfile(output_dir, strcat("iy_",file,ext)),1);
         compress_file(fullfile(output_dir, strcat("y_",file,ext)),1);
-        compress_file(fullfile(output_dir, strcat("p0",file,ext)),1);
+        zip_status = compress_file(fullfile(output_dir, strcat("p0",file,ext)),1);
+        if zip_status == 0
+            fprintf('[INFO]Files were not compressed: 7zip was not found\n');
+        end
+        
     end
 end

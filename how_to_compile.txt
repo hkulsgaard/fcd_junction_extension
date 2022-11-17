@@ -1,14 +1,40 @@
-In order to compile this version of FCD_MAPS you need to have Matlab Platform R2018b installed and follow this steps:
-(1)Run "Application Compiler" inside Matlab
-(2)Select "run_fcd_maps.m" as main script
-(3)In "File required for your application to run" you have to select manually:
-	* <spm_dir>\tpm (affine registration templates directory)
-	* <spm_dir>\toolbox\OldNorm (Affine registration scripts directory)
-	* <spm_dir>\toolbox\cat12\templates_MNI152NLin2009cAsym (Shooting registration templates directory)
-	* <spm_dir>\Contents.txt (File required for deploying SPM12 application)
-	* <spm_dir>\toolbox\cat12\Contents.txt (File required for deploying CAT12 application)
-	* \utils (directory of this proyect)
-	* (optional-check NOTES) \cat12_modules (directory of this proyect)
+---------------------------------------------------------------------------------------------------------------------
+HOW TO COMPILE RUN_FCD_MAPS IN MATLAB
+---------------------------------------------------------------------------------------------------------------------
 
-Notes:
->In case you want to modify the parameters of the cat12 prepro module after compilation, you should have "cat12_modules" dir alongside with the "run_fcd_maps.exe". Remember to not add it as a requirement in the compilation.
+In order to compile this version of FCD_MAPS you need to have Matlab Platform R2018b installed and follow this steps:
+
+(1)Go to "Set Path" in Matlab and remove all the SPM and CAT12 subfolders.
+   The only path to SPM and CAT12 should be <spm_dir> and <spm_dir>/toolbox/cat12, respectively.
+   
+(2)Run "Application Compiler" inside Matlab
+
+(3)Select "run_fcd_maps.m" as main script
+
+(4)In "File required for your application to run" you have to select manually:
+	* "<spm_dir>\tpm"  (templates from SPM)
+	* "<spm_dir>\toolbox\OldNorm" (Affine registration scripts directory)
+	* "<spm_dir>\toolbox\Shoot" (Shooting registration directory)
+	* "<spm_dir>\toolbox\cat12\templates_MNI152NLin2009cAsym" (Shooting registration templates directory)
+		+ "brainmask.nii"
+		+ "brainmask_T1.nii"
+		+ "cat.nii"
+		+ "cat_1mm.nii"
+		+ "Template_T1.nii"
+		+ "T1.nii"
+		+ "Template_T1_masked.nii"
+	* "<spm_dir>\Contents.txt" (File required for deploying SPM12 application)
+	* "<spm_dir>\toolbox\cat12\Contents.txt" (File required for deploying CAT12 application)
+	* "\utils" (directory of this project)
+	
+(5)Click on "Package Application"
+
+(6)After compiling, your executable file "run_fcd_maps.exe" need to be alongside "cat12_modules" directory 
+   containing "cat12_prepro_module.mat"
+   
+   
+NOTES:
+>Only the first time that you run the compiled ".exe", a temporal folder with all the compiled files will be created in
+ "C:\Users\<user_name>\AppData\Local\Temp\<user_name>\mcrCache9.5\run_fcX" and that process is going to take ~1min
+
+>If you run another matlab executable in the same way, that directory will be removed

@@ -1,11 +1,12 @@
 function output = compress_file(path, del_file)
     output = 0;
     zip_path = get_path('7z');
-    if zip_path=="7z" || exist(zip_path, 'file')
-        command = strcat(zip_path, " a -mx5 ", path, ".gz ", path);
+    if exist(zip_path, 'file')
+        new_path = strcat(path, ".gz");
+        command = strcat(zip_path, " a -mx5 ", new_path, " ", path);
         [status,~] = system(command);
 
-        if del_file
+        if del_file && exist(new_path,'file')
             delete(path);
         end
         output = 1;
