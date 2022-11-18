@@ -33,3 +33,6 @@ Implementation of Junction and Extension maps for automatic detection of Focal C
    
 ## Result:
 ![Example result](https://github.com/hkulsgaard/fcd_maps/blob/master/images/results_thresholded.jpg)
+
+## References:
+- Huppertz, Hans-Jürgen, et al. "Enhanced visualization of blurred gray–white matter junctions in focal cortical dysplasia by voxel-based 3D MRI analysis." Epilepsy research 67.1-2 (2005): 35-50. ([details here](https://pubmed.ncbi.nlm.nih.gov/16171974/))
